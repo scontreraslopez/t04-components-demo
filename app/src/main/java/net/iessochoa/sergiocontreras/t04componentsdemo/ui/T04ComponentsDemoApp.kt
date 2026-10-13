@@ -12,7 +12,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -37,6 +39,12 @@ fun T04ComponentsDemoApp() {
     var selectedIngredient by rememberSaveable { mutableStateOf(radioOptions.first()) }
 
     var tareaNombre by rememberSaveable { mutableStateOf("") }
+    // KO: Añadir o quitar no recompone
+    // val tareas = remember { mutableListOf("Beber agua", "Caminar") }
+
+    // OK: Observable
+    val tareas = remember { mutableStateListOf("") }
+
 
     T04ComponentsDemoTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -83,12 +91,19 @@ fun T04ComponentsDemoApp() {
                    )
                    Spacer(modifier = Modifier.weight(0.5f))
                    Button(
-                       onClick = {},
+                       onClick = {
+                           tareas.add(tareaNombre)
+                           tareaNombre = ""
+                       },
                        modifier = Modifier.weight(1f)
                    ) {
                        Text("Añadir tarea")
                    }
                }
+
+                tareas.forEach {
+                    Text(it)
+                }
 
 
 
