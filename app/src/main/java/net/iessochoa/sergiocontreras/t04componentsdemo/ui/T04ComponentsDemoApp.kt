@@ -13,9 +13,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import net.iessochoa.sergiocontreras.t04componentsdemo.R
 import net.iessochoa.sergiocontreras.t04componentsdemo.components.NombreTextField
+import net.iessochoa.sergiocontreras.t04componentsdemo.components.RowRadioButtonCompose
 import net.iessochoa.sergiocontreras.t04componentsdemo.components.SwitchConEtiqueta
 import net.iessochoa.sergiocontreras.t04componentsdemo.ui.theme.T04ComponentsDemoTheme
 
@@ -25,6 +28,9 @@ fun T04ComponentsDemoApp(modifier: Modifier = Modifier) {
 
     var esPremium by rememberSaveable { mutableStateOf(false) }
     var informesSemanales by rememberSaveable { mutableStateOf(false) }
+
+    val radioOptions = stringArrayResource(R.array.ingredientes).toList()
+    var selectedIngredient by rememberSaveable { mutableStateOf(radioOptions.first()) }
 
     T04ComponentsDemoTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -50,6 +56,16 @@ fun T04ComponentsDemoApp(modifier: Modifier = Modifier) {
                 Spacer(
                     modifier = Modifier.padding(24.dp)
                 )
+
+                RowRadioButtonCompose(
+                    radioOptions,
+                    opcionSeleccionada = selectedIngredient,
+                    onOptionSelected = { selectedIngredient = it }
+                )
+
+
+
+
 
 
             }
