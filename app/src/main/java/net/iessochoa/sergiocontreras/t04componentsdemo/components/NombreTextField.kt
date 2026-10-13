@@ -1,10 +1,12 @@
 package net.iessochoa.sergiocontreras.t04componentsdemo.components
 
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 
@@ -16,6 +18,7 @@ fun NombreTextField(
     maxCaracteres: Int = 20,
     isError: Boolean = false
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
     OutlinedTextField(
         value = nombre,
         onValueChange = { if (it.length <= maxCaracteres) onNombreChange(it) },
@@ -24,6 +27,12 @@ fun NombreTextField(
         isError = isError,
         supportingText = { Text("${nombre.length} / $maxCaracteres") },
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done ),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                // Maneja the "Done" action
+                keyboardController?.hide() // Esconde el teclado
+            }
+        ),
         modifier = modifier
     )
 }

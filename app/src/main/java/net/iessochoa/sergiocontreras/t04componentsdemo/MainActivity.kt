@@ -12,9 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            T04ComponentsDemoTheme {
-                T04ComponentsDemoApp()
-            }
+            T04ComponentsDemoApp()
         }
     }
 }
