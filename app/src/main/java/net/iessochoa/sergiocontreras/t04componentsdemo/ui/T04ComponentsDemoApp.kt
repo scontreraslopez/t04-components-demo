@@ -1,9 +1,13 @@
 package net.iessochoa.sergiocontreras.t04componentsdemo.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,13 +28,15 @@ import net.iessochoa.sergiocontreras.t04componentsdemo.ui.theme.T04ComponentsDem
 
 
 @Composable
-fun T04ComponentsDemoApp(modifier: Modifier = Modifier) {
+fun T04ComponentsDemoApp() {
 
     var esPremium by rememberSaveable { mutableStateOf(false) }
     var informesSemanales by rememberSaveable { mutableStateOf(false) }
 
     val radioOptions = stringArrayResource(R.array.ingredientes).toList()
     var selectedIngredient by rememberSaveable { mutableStateOf(radioOptions.first()) }
+
+    var tareaNombre by rememberSaveable { mutableStateOf("") }
 
     T04ComponentsDemoTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -62,6 +68,27 @@ fun T04ComponentsDemoApp(modifier: Modifier = Modifier) {
                     opcionSeleccionada = selectedIngredient,
                     onOptionSelected = { selectedIngredient = it }
                 )
+
+               Row(
+                   modifier = Modifier
+                       .fillMaxWidth()
+                       .padding(horizontal = 16.dp),
+                   horizontalArrangement = Arrangement.SpaceEvenly,
+                   verticalAlignment = Alignment.CenterVertically
+               ) { // Añadidor de tareas
+                   NombreTextField(
+                       nombre = tareaNombre,
+                       onNombreChange = {tareaNombre = it},
+                       modifier = Modifier.weight(2f)
+                   )
+                   Spacer(modifier = Modifier.weight(0.5f))
+                   Button(
+                       onClick = {},
+                       modifier = Modifier.weight(1f)
+                   ) {
+                       Text("Añadir tarea")
+                   }
+               }
 
 
 
