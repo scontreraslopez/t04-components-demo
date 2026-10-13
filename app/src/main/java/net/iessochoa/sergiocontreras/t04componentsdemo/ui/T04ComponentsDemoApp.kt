@@ -47,6 +47,11 @@ fun T04ComponentsDemoApp(modifier: Modifier = Modifier) {
                     onCheckedChange = { informesSemanales = it },
                     enabled = esPremium
                 )
+                Spacer(
+                    modifier = Modifier.padding(24.dp)
+                )
+
+
             }
         }
     }

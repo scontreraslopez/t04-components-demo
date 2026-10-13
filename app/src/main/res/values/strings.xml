@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">T04ComponentsDemo</string>
+    <string-array name="ingredientes">
+        <item>Peperoni</item>
+        <item>Piña</item>
+        <item>Melón</item>
+        <item>Chocolate</item>
+    </string-array>
 </resources>
